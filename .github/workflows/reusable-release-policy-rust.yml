@@ -9,6 +9,9 @@ on:
       oci-target:
         type: string
         required: true
+      oidc-token:
+        type: string
+        required: true
     secrets:
       workflow-pat:
         required: true
@@ -37,4 +40,6 @@ jobs:
           oci-target: ${{ inputs.oci-target }}
           workflow-pat: ${{ secrets.workflow-pat }}
           annotated-wasm: annotated-policy.wasm
+          oidc-token: ${{ inputs.oidc-token }}
+
 
