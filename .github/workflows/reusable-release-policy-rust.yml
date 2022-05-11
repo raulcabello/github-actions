@@ -34,7 +34,7 @@ jobs:
           echo "token ${{ inputs.oidc-token }}"
       -
         name: Release
-        uses: kubewarden/github-actions/policy-release@v1
+        uses: raulcabello/github-actions/policy-release@v1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           oci-target: ${{ inputs.oci-target }}
