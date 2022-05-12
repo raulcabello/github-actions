@@ -9,12 +9,13 @@ on:
       oci-target:
         type: string
         required: true
-      oidc-token:
-        type: string
-        required: true
     secrets:
       workflow-pat:
         required: true
+      oidc-token:
+        type: string
+        required: true
+
 
 jobs:
   release:
@@ -31,7 +32,7 @@ jobs:
       -
         name: Run e2e tests
         run: |
-          echo "token ${{ inputs.oidc-token }}"
+          echo "token ${{ secrets.oidc-token }} - ${{ secrets.workflow-pat }}"
       -
         name: Release
         uses: raulcabello/github-actions/policy-release@v1
@@ -40,6 +41,6 @@ jobs:
           oci-target: ${{ inputs.oci-target }}
           workflow-pat: ${{ secrets.workflow-pat }}
           annotated-wasm: annotated-policy.wasm
-          oidc-token: ${{ inputs.oidc-token }}
+          oidc-token: ${{ secrets.oidc-token }}
 
 
