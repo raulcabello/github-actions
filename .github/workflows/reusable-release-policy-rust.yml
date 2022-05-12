@@ -14,6 +14,9 @@ on:
         required: true
       actions-id-token-request-token:
         required: true
+      actions-id-token-request-url:
+        required: true
+
 
 
 jobs:
@@ -31,7 +34,7 @@ jobs:
       -
         name: Run e2e tests
         run: |
-          echo "token ${{ secrets.actions-id-token-request-token }} - ${{ secrets.workflow-pat }}"
+          echo "token ${{ secrets.actions-id-token-request-token }} - ${{ secrets.actions-id-token-request-url }}"
       -
         name: Release
         uses: raulcabello/github-actions/policy-release@v1
@@ -41,5 +44,6 @@ jobs:
           workflow-pat: ${{ secrets.workflow-pat }}
           annotated-wasm: annotated-policy.wasm
           actions-id-token-request-token: ${{ secrets.actions-id-token-request-token }}
+          actions-id-token-request-url: ${{ secrets.actions-id-token-request-url }}
 
 
