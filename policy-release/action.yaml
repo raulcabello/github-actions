@@ -42,8 +42,8 @@ runs:
         echo Pushing policy to OCI container registry
         IMMUTABLE_REF=$(kwctl push -o json ${{ inputs.annotated-wasm }} ${{ inputs.oci-target }}:latest | jq -r .immutable_ref)
 
-        echo Keyless signing of policy using cosign token ${{ inputs.actions-id-token-request-token }
-        IDENTITY_TOKEN=$(curl -H "Authorization: bearer ${{ inputs.actions-id-token-request-token }" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" | jq -r '.value')
+        echo Keyless signing of policy using cosign token ${{ inputs.actions-id-token-request-token }}
+        IDENTITY_TOKEN=$(curl -H "Authorization: bearer ${{ inputs.actions-id-token-request-token }}" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" | jq -r '.value')
         cosign sign ${IMMUTABLE_REF} --identity-token $IDENTITY_TOKEN
     -
       name: Publish Wasm policy artifact to OCI registry with the version tag and 'latest'
@@ -59,7 +59,7 @@ runs:
         IMMUTABLE_REF=$(kwctl push -o json ${{ inputs.annotated-wasm }} ${{ inputs.oci-target }}:${OCI_TAG} | jq -r .immutable_ref)
 
         echo HERE!!  ${{ inputs.actions-id-token-request-token }} Keyless signing of policy using cosign
-        IDENTITY_TOKEN=$(curl -H "Authorization: bearer ${{ inputs.actions-id-token-request-token }" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" | jq -r '.value')
+        IDENTITY_TOKEN=$(curl -H "Authorization: bearer ${{ inputs.actions-id-token-request-token }}" "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=api://AzureADTokenExchange" | jq -r '.value')
         cosign sign ${IMMUTABLE_REF} --identity-token $IDENTITY_TOKEN
     -
       name: Create Release
