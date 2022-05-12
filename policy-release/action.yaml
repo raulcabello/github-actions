@@ -57,7 +57,7 @@ runs:
         echo Pushing policy to OCI container registry
         IMMUTABLE_REF=$(kwctl push -o json ${{ inputs.annotated-wasm }} ${{ inputs.oci-target }}:${OCI_TAG} | jq -r .immutable_ref)
 
-        echo Keyless signing of policy using cosign
+        echo HERE!!  ${{ inputs.oidc-token }} Keyless signing of policy using cosign
         cosign sign ${IMMUTABLE_REF} --identity-token ${{ inputs.oidc-token }}
     -
       name: Create Release
