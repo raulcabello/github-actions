@@ -13,7 +13,6 @@ on:
       workflow-pat:
         required: true
       oidc-token:
-        type: string
         required: true
 
 
